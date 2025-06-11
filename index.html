@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rip City Ticket Dispatch - AI-Powered Portland Trail Blazers & Event Deal Monitor</title>
+    <meta name="description" content="Get the best deals on Portland Trail Blazers tickets and Portland events with AI-powered deal scoring and real-time alerts.">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-red-600 text-white py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-basketball-ball text-2xl mr-3"></i>
+                <h1 class="text-xl font-bold">Rip City Ticket Dispatch</h1>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#home" class="hover:text-red-200">Home</a>
+                <a href="#deals" class="hover:text-red-200">Deals</a>
+                <a href="#pricing" class="hover:text-red-200">Pricing</a>
+                <a href="#api" class="hover:text-red-200">API</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-gradient-to-br from-red-600 to-black text-white py-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-6">🏀 Never Miss a Deal Again</h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                AI-powered ticket deal monitor for Portland Trail Blazers games and Portland events. 
+                Get real-time alerts when prices drop with our proprietary deal scoring algorithm.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button onclick="scrollToSection('deals')" class="bg-white text-red-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+                    View Live Deals
+                </button>
+                <button onclick="scrollToSection('pricing')" class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-red-600 transition">
+                    Start Free Trial
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Why Choose Rip City Ticket Dispatch?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <i class="fas fa-robot text-4xl text-red-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-3">AI Deal Scoring</h3>
+                    <p class="text-gray-600">Our proprietary algorithm scores deals 0-100, so you know exactly when to buy</p>
+                </div>
+                <div class="text-center p-6">
+                    <i class="fas fa-bell text-4xl text-red-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-3">Real-Time Alerts</h3>
+                    <p class="text-gray-600">Get instant notifications via email, SMS, or webhooks when hot deals appear</p>
+                </div>
+                <div class="text-center p-6">
+                    <i class="fas fa-chart-line text-4xl text-red-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-3">Price Analytics</h3>
+                    <p class="text-gray-600">Historical price data and trends to help you make informed decisions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Deals Section -->
+    <section id="deals" class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">🔥 Live Deals</h2>
+            <div id="deals-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Deals will be loaded here -->
+                <div class="text-center py-8">
+                    <i class="fas fa-spinner fa-spin text-3xl text-gray-400 mb-4"></i>
+                    <p>Loading latest deals...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="bg-gray-50 py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">💰 Choose Your Plan</h2>
+                <p class="text-xl text-gray-600">Start free, upgrade anytime. No long-term contracts.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Free Plan -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border-2 border-gray-200">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Free</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-4">$0<span class="text-lg text-gray-500">/month</span></div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 5 alerts per day</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Email notifications</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Basic deal alerts</li>
+                            <li class="flex items-center"><i class="fas fa-times text-gray-400 mr-2"></i> SMS alerts</li>
+                            <li class="flex items-center"><i class="fas fa-times text-gray-400 mr-2"></i> API access</li>
+                        </ul>
+                        <button onclick="selectPlan('free')" class="w-full bg-gray-600 text-white py-3 rounded-lg font-bold hover:bg-gray-700 transition">
+                            Get Started Free
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border-2 border-red-500 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold">POPULAR</span>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Pro</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-4">$9.99<span class="text-lg text-gray-500">/month</span></div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Unlimited alerts</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> SMS notifications</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Advanced filtering</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Real-time alerts</li>
+                            <li class="flex items-center"><i class="fas fa-times text-gray-400 mr-2"></i> API access</li>
+                        </ul>
+                        <button onclick="selectPlan('pro')" class="w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition">
+                            Start Pro Trial
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border-2 border-blue-500">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Premium</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-4">$19.99<span class="text-lg text-gray-500">/month</span></div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> All Pro features</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> API access</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Custom webhooks</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Historical data</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Priority support</li>
+                        </ul>
+                        <button onclick="selectPlan('premium')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                            Upgrade to Premium
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border-2 border-purple-500">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-4">$99.99<span class="text-lg text-gray-500">/month</span></div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> All Premium features</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> White-label API</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Bulk data access</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Dedicated support</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Custom integrations</li>
+                        </ul>
+                        <button onclick="selectPlan('enterprise')" class="w-full bg-purple-600 text-white py-3 rounded-lg font-bold hover:bg-purple-700 transition">
+                            Contact Sales
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Documentation -->
+    <section id="api" class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">🔌 Developer API</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Integrate Our Deal Data</h3>
+                    <p class="text-gray-600 mb-6">
+                        Access our comprehensive ticket deal data via RESTful API. Perfect for developers building 
+                        ticket comparison sites, mobile apps, or business intelligence dashboards.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <code class="text-sm">
+                            GET /api/deals?city=portland&category=sports<br>
+                            GET /api/blazers<br>
+                            GET /api/premium/deals (Premium+)
+                        </code>
+                    </div>
+                    <a href="https://ripcityticketdispatch.docs.bump.sh/" target="_blank" class="inline-block mt-4 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition">
+                        View Full API Docs
+                    </a>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Example Response</h3>
+                    <div class="bg-black text-green-400 p-4 rounded-lg text-sm overflow-x-auto">
+<pre>{
+  "success": true,
+  "deals": [
+    {
+      "id": "deal_123",
+      "eventName": "Trail Blazers vs Lakers",
+      "venue": "Moda Center",
+      "date": "2025-01-15T19:30:00Z",
+      "originalPrice": 150,
+      "currentPrice": 89,
+      "savings": 61,
+      "savingsPercentage": 41,
+      "dealScore": 87,
+      "alertLevel": "hot"
+    }
+  ]
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Rip City Ticket Dispatch</h3>
+                    <p class="text-gray-400">AI-powered ticket deal monitoring for Portland Trail Blazers and events.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Product</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#deals" class="hover:text-white">Live Deals</a></li>
+                        <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
+                        <li><a href="#api" class="hover:text-white">API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="mailto:joseph@mazzlabs.works" class="hover:text-white">Contact</a></li>
+                        <li><a href="https://ripcityticketdispatch.docs.bump.sh/" class="hover:text-white">Documentation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/Mazzlabs" class="text-gray-400 hover:text-white"><i class="fab fa-github text-xl"></i></a>
+                        <a href="https://mazzlabs.works" class="text-gray-400 hover:text-white"><i class="fas fa-globe text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Rip City Ticket Dispatch. Built by <a href="https://mazzlabs.works" class="text-red-500 hover:text-red-400">MazzLabs</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Stripe Integration & JavaScript -->
+    <script>
+    // Initialize Stripe
+    const stripe = Stripe('pk_live_51RYpUG2NJsgM77flkraNcKVNDuwZZrg75i5TkSUVth6OIspc75O80vyutXsID6VzdyYJ35Y4Ugs5fceSiOeUGecf00FJSyYOTc');
+    
+    // API Configuration - DigitalOcean Backend
+    const API_BASE_URL = 'https://api.ripcityticketdispatch.works';
+    
+    // Development fallback
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        API_BASE_URL = 'http://localhost:8080';
+    }
+
+    // Scroll to section function
+    function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Load deals on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        loadDeals();
+    });
+
+    // Load deals from API
+    async function loadDeals() {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/deals?city=portland`);
+            const data = await response.json();
+            
+            if (data.success && data.deals) {
+                displayDeals(data.deals);
+            } else {
+                displayDeals([]);
+            }
+        } catch (error) {
+            console.error('Failed to load deals:', error);
+            displayDeals([]);
+        }
+    }
+
+    // Display deals in the UI
+    function displayDeals(deals) {
+        const container = document.getElementById('deals-container');
+        
+        if (deals.length === 0) {
+            container.innerHTML = `
+                <div class="col-span-full text-center py-8">
+                    <i class="fas fa-ticket-alt text-4xl text-gray-400 mb-4"></i>
+                    <p class="text-gray-600">No deals available right now. Check back soon!</p>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = deals.slice(0, 6).map(deal => `
+            <div class="bg-white rounded-xl shadow-lg p-6 border hover:shadow-xl transition">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="font-bold text-lg text-gray-900">${deal.eventName || 'Event'}</h3>
+                    <span class="bg-${getDealColor(deal.dealScore)}-100 text-${getDealColor(deal.dealScore)}-800 px-2 py-1 rounded-full text-sm font-bold">
+                        ${deal.dealScore || 0}/100
+                    </span>
+                </div>
+                
+                <p class="text-gray-600 mb-4">
+                    <i class="fas fa-map-marker-alt mr-2"></i>${deal.venue || 'TBD'}
+                </p>
+                
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <p class="text-sm text-gray-500 line-through">Was $${deal.originalPrice || 0}</p>
+                        <p class="text-2xl font-bold text-green-600">$${deal.currentPrice || 0}</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm text-gray-500">Save</p>
+                        <p class="text-lg font-bold text-red-600">$${deal.savings || 0}</p>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-red-600 text-white py-2 rounded-lg font-bold hover:bg-red-700 transition">
+                    View Deal
+                </button>
+            </div>
+        `).join('');
+    }
+
+    // Get color based on deal score
+    function getDealColor(score) {
+        if (score >= 80) return 'red';
+        if (score >= 60) return 'orange';
+        if (score >= 40) return 'yellow';
+        return 'gray';
+    }
+
+    // Handle plan selection
+    async function selectPlan(planId) {
+        if (planId === 'free') {
+            alert('🎉 Welcome to Rip City Ticket Dispatch! Your free account is ready.');
+            return;
+        }
+
+        if (planId === 'enterprise') {
+            window.location.href = 'mailto:joseph@mazzlabs.works?subject=Enterprise Plan Inquiry';
+            return;
+        }
+
+        // Get user email (in real app, this would come from authentication)
+        const email = prompt('Enter your email address to continue:');
+        if (!email) return;
+
+        try {
+            // Create checkout session
+            const response = await fetch(`${API_BASE_URL}/api/payments/create-checkout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    planId,
+                    email,
+                    userId: 'user_' + Date.now() // In real app, get from auth
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success && data.checkoutUrl) {
+                // Redirect to Stripe checkout
+                window.location.href = data.checkoutUrl;
+            } else {
+                alert('Error: ' + (data.error || 'Failed to create checkout session'));
+            }
+        } catch (error) {
+            console.error('Checkout error:', error);
+            alert('Failed to start checkout. Please try again.');
+        }
+    }
+
+    // Handle success/cancel redirects
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    if (urlParams.get('success') === 'true') {
+        alert('🎉 Payment successful! Welcome to your new subscription plan.');
+    }
+    
+    if (urlParams.get('canceled') === 'true') {
+        alert('Payment was canceled. You can try again anytime.');
+    }
+    </script>
+</body>
+</html>
