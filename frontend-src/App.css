@@ -1,0 +1,497 @@
+/* Rip City Ticket Dispatch - Trail Blazers Theme */
+
+/* CSS Variables for Trail Blazers Colors */
+:root {
+  --blazers-red: #E03A3E;
+  --blazers-black: #000000;
+  --blazers-silver: #C4CED4;
+  --blazers-dark-red: #B8282D;
+  --blazers-light-silver: #F0F0F0;
+  --court-wood: #C19A6B;
+  --success-green: #28a745;
+  --warning-orange: #fd7e14;
+  --gradient-primary: linear-gradient(135deg, var(--blazers-red), var(--blazers-dark-red));
+  --gradient-secondary: linear-gradient(135deg, var(--blazers-black), var(--blazers-red));
+  --shadow-soft: 0 4px 20px rgba(224, 58, 62, 0.15);
+  --shadow-medium: 0 8px 30px rgba(224, 58, 62, 0.25);
+  --shadow-strong: 0 12px 40px rgba(224, 58, 62, 0.35);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+  color: var(--blazers-light-silver);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Navigation Styles */
+.navbar {
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--blazers-red);
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-logo {
+  font-size: 2rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+.nav-title {
+  color: var(--blazers-red);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.nav-subtitle {
+  color: var(--blazers-silver);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.monitoring-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.monitoring-toggle {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.monitoring-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.monitoring-toggle.stop {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+.last-scan {
+  font-size: 0.8rem;
+  color: var(--blazers-silver);
+}
+
+/* Filter Section */
+.filter-section {
+  margin-top: 120px;
+  padding: 2rem 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.filter-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.filter-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.filter-controls h2 {
+  color: var(--blazers-red);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--blazers-light-silver);
+  border: 2px solid transparent;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filter-btn:hover {
+  background: rgba(224, 58, 62, 0.2);
+  border-color: var(--blazers-red);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: var(--gradient-primary);
+  border-color: var(--blazers-red);
+  color: white;
+  box-shadow: var(--shadow-medium);
+}
+
+.filter-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.filter-btn.active .filter-count {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Deals Section */
+.deals-section {
+  padding: 4rem 0;
+  min-height: 60vh;
+}
+
+.deals-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.deals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.no-deals-message {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--blazers-silver);
+}
+
+.no-deals-message p {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+/* Stats Footer */
+.stats-footer {
+  background: rgba(0, 0, 0, 0.8);
+  border-top: 2px solid var(--blazers-red);
+  padding: 3rem 0;
+  margin-top: 4rem;
+}
+
+.stats-footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--blazers-red);
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--blazers-silver);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-text {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(224, 58, 62, 0.3);
+}
+
+.footer-text p {
+  color: var(--blazers-silver);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes bounce-basketball {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(224, 58, 62, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(224, 58, 62, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(224, 58, 62, 0);
+  }
+}
+
+/* Hackathon Demo Enhancements */
+.demo-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  background: linear-gradient(135deg, #E03A3E, #B8282D);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(224, 58, 62, 0.4);
+  animation: slideInRight 0.5s ease-out;
+  max-width: 350px;
+}
+
+.demo-alert h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.demo-alert p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Demo Mode Indicator */
+.demo-mode::before {
+  content: '🎪 HACKATHON DEMO MODE';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #E03A3E, #B8282D);
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 9999;
+  letter-spacing: 1px;
+}
+
+/* Performance Showcase */
+.perf-showcase {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  color: var(--blazers-red);
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  border: 1px solid var(--blazers-red);
+  z-index: 9999;
+}
+
+.perf-showcase h4 {
+  color: white;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.perf-showcase .metric {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.2rem 0;
+}
+
+.perf-showcase .metric .value {
+  color: #00ff88;
+  font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar .container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .nav-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .filter-section {
+    margin-top: 160px;
+  }
+
+  .filter-controls {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .filter-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    font-size: 0.85rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .deals-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-title {
+    font-size: 1.2rem;
+  }
+
+  .nav-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .filter-controls h2 {
+    font-size: 1.5rem;
+  }
+
+  .footer-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  .filter-btn:hover,
+  .nav-link:hover,
+  .toggle-btn:hover {
+    transform: none;
+  }
+
+  .ticket-card:hover {
+    transform: none;
+    box-shadow: 0 8px 25px rgba(224, 58, 62, 0.2);
+  }
+}
+
+/* Safe area for notched devices */
+@supports (padding: max(0px)) {
+  .app {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  .navbar {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+}
