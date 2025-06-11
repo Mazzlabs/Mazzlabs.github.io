@@ -4,7 +4,7 @@ services:
 - name: api
   source_dir: rip-city-backend
   github:
-    repo: Mazzlabs/Mazzlabs.github.io
+    repo: YOUR_USERNAME/ripcityticketdispatch
     branch: main
     deploy_on_push: true
   run_command: node src/server.js
@@ -21,7 +21,7 @@ services:
     allow_origins:
     - "https://ripcityticketdispatch.works"
     - "https://www.ripcityticketdispatch.works"
-    - "https://mazzlabs.works"
+    - "https://api.ripcityticketdispatch.works"
     allow_methods:
     - GET
     - POST
@@ -40,8 +40,28 @@ services:
   - key: TICKETMASTER_API_KEY
     value: "your-api-key-here"
     type: SECRET
+  - key: STRIPE_SECRET_KEY
+    value: "your-stripe-secret-key-here"
+    type: SECRET
+  - key: STRIPE_PUBLISHABLE_KEY
+    value: "pk_live_51RYpUG2NJsgM77flkraNcKVNDuwZZrg75i5TkSUVth6OIspc75O80vyutXsID6VzdyYJ35Y4Ugs5fceSiOeUGecf00FJSyYOTc"
+    type: SECRET
+  - key: STRIPE_WEBHOOK_SECRET
+    value: "your-webhook-secret-here"
+    type: SECRET
+  - key: STRIPE_PRO_PRICE_ID
+    value: "price_pro_monthly_999"
+    type: SECRET
+  - key: STRIPE_PREMIUM_PRICE_ID
+    value: "price_premium_monthly_1999"
+    type: SECRET
+  - key: STRIPE_ENTERPRISE_PRICE_ID
+    value: "price_enterprise_monthly_9999"
+    type: SECRET
+  - key: FRONTEND_URL
+    value: "https://ripcityticketdispatch.works"
   - key: CORS_ORIGINS
-    value: "https://ripcityticketdispatch.works,https://mazzlabs.works"
+    value: "https://ripcityticketdispatch.works,https://www.ripcityticketdispatch.works,https://api.ripcityticketdispatch.works"
 
 domains:
 - domain: api.ripcityticketdispatch.works

@@ -14,7 +14,7 @@ app.use(cors({
   origin: [
     'https://ripcityticketdispatch.works',
     'https://www.ripcityticketdispatch.works', 
-    'https://mazzlabs.works',
+    'https://api.ripcityticketdispatch.works',
     'http://localhost:3000',
     'http://localhost:8080'
   ],
